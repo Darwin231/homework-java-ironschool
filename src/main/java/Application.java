@@ -6,6 +6,8 @@ public class Application {
 
         createSchoolName();
         teacherDetails();
+        //Commands comandos = new Commands();
+        //Selector(comandos); TODO Descomenta estas dos lineas cuando estén los tres mapas listos
     }
 
     private static final Scanner scanner = new Scanner(System.in);
