@@ -25,10 +25,12 @@ public class Main {
         teacherList.put(profesor2.getTeacherId(),profesor2);
         Teacher profesor3 = new Teacher("Toni", 3000);
         teacherList.put(profesor3.getTeacherId(),profesor3);
+        Application app = new Application();
 
         Commands comandos = new Commands(courseList,studentList,teacherList);
         Scanner scanner = new Scanner(System.in);
-        comandos.commandSelector( CommandEnum.ENROLL,scanner);
+        app.Selector(comandos);
+        //comandos.commandSelector( CommandEnum.ENROLL,scanner);
 
     }
 }

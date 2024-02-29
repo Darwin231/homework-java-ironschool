@@ -1,7 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class Application {
 
@@ -72,8 +69,56 @@ public class Application {
 
     }
 
-
-
+    public static void Selector(Commands comandos){
+        System.out.println("Choose a command:\n");
+        System.out.println("1. Enroll\n");
+        System.out.println("2. Assign\n");
+        System.out.println("3. Show courses\n");
+        System.out.println("4. Lookup course\n");
+        System.out.println("5. Show students\n");
+        System.out.println("6. Lookup student\n");
+        System.out.println("7. Show teachers\n");
+        System.out.println("8. Lookup teacher\n");
+        System.out.println("9. Show profit\n");
+        try {
+            Scanner scanner = new Scanner(System.in);
+            int commandoption = scanner.nextInt();
+            switch (commandoption) {
+                case 1:
+                    comandos.commandSelector(CommandEnum.ENROLL, scanner);
+                    break;
+                case 2:
+                    comandos.commandSelector(CommandEnum.ASSIGN, scanner);
+                    break;
+                case 3:
+                    comandos.commandSelector(CommandEnum.SHOW_COURSES, scanner);
+                    break;
+                case 4:
+                    comandos.commandSelector(CommandEnum.LOOKUP_COURSE, scanner);
+                    break;
+                case 5:
+                    comandos.commandSelector(CommandEnum.SHOW_STUDENTS, scanner);
+                    break;
+                case 6:
+                    comandos.commandSelector(CommandEnum.LOOKUP_STUDENT, scanner);
+                    break;
+                case 7:
+                    comandos.commandSelector(CommandEnum.SHOW_TEACHERS, scanner);
+                    break;
+                case 8:
+                    comandos.commandSelector(CommandEnum.LOOKUP_TEACHER, scanner);
+                    break;
+                case 9:
+                    comandos.commandSelector(CommandEnum.SHOW_PROFIT, scanner);
+                    break;
+                default:
+                    System.err.println("The option selected is not available");
+                    break;
+            }
+        }catch(InputMismatchException ime) {
+            System.err.println("The option selected is not available");
+        }
+    }
 }
 
 

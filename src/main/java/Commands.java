@@ -40,53 +40,55 @@ public class Commands {
         this.teacherList = teacherList;
     }
 
-    public void selector(){
-        System.out.println("Choose a command:\n");
-        System.out.println("1. Enroll:\n");
-        System.out.println("2. Assign:\n");
-        System.out.println("3. Show courses:\n");
-        System.out.println("4. Lookup course:\n");
-        System.out.println("5. Show students:\n");
-        System.out.println("6. Lookup student\n");
-        System.out.println("7. Show teachers:\n");
-        System.out.println("8. Lookup teacher:\n");
-        System.out.println("9. Show profit:\n");
-        Scanner scanner = new Scanner(System.in);
-        int commandoption = scanner.nextInt();
-        commandSelector(CommandEnum.ENROLL, scanner);
-    }
     public void commandSelector(CommandEnum commandAction, Scanner scanner){
-        String studentID = "asdfasdf";
-        String courseID = "asdfasdf";
-        String teacherID = "asdfasdf";
+        String studentID = "";
+        String courseID = "";
+        String teacherID = "";
         switch (commandAction){
         case ENROLL:
             System.out.println("Which course do you want to enroll? (write the id):\n");
             courseList.forEach((key,value) -> {
                 System.out.println(key + " = " + value.getName() + " ");
             });
-            courseID = scanner.next();
-            System.out.println("Which student do you want to enroll in this course? (write the id):\n");
-            studentList.forEach((key,value) -> {
-                System.out.println(key + " = " + value.getName()+ " ");
+            try {
+                courseID = scanner.next();
+                System.out.println("Which student do you want to enroll in this course? (write the id):\n");
+                studentList.forEach((key,value) -> {
+                    System.out.println(key + " = " + value.getName()+ " ");
 
-            });
-            studentID = scanner.next();
-            enroll(studentID,courseID);
+                });
+                try {
+                    studentID = scanner.next();
+                    enroll(studentID, courseID);
+                }catch(IllegalArgumentException iae){
+                    System.err.println("The option introduced is not correct");
+                }
+            }catch(IllegalArgumentException iae){
+                System.err.println("The option introduced is not correct");
+            }
+
             break;
         case ASSIGN:
             System.out.println("In which course do you want to assign a teacher? (write the id):\n");
             courseList.forEach((key,value) -> {
                 System.out.println(key + " = " + value.getName() + " ");
             });
-            courseID = scanner.next();
-            System.out.println("Which teacher do you want to assign to this course? (write the id):\n");
-            teacherList.forEach((key,value) -> {
-                System.out.println(key + " = " + value.getName()+ " ");
+            try{
+                courseID = scanner.next();
+                System.out.println("Which teacher do you want to assign to this course? (write the id):\n");
+                teacherList.forEach((key,value) -> {
+                    System.out.println(key + " = " + value.getName()+ " ");
 
-            });
-            studentID = scanner.next();
-            assign(teacherID,courseID);
+                });
+                try {
+                    studentID = scanner.next();
+                    assign(teacherID, courseID);
+                }catch(IllegalArgumentException iae){
+                    System.err.println("The option introduced is not correct");
+                }
+            }catch(IllegalArgumentException iae){
+                System.err.println("The option introduced is not correct");
+            }
             break;
         case SHOW_COURSES:
             ShowCourses();
@@ -96,8 +98,12 @@ public class Commands {
             courseList.forEach((key,value) -> {
                 System.out.println(key + " = " + value.getName() + " ");
             });
-            courseID = scanner.next();
-            LookupCourse(courseID);
+            try{
+                courseID = scanner.next();
+                LookupCourse(courseID);
+            }catch(IllegalArgumentException iae){
+                System.err.println("The option introduced is not correct");
+            }
             break;
         case SHOW_STUDENTS:
             ShowStudents();
@@ -107,8 +113,12 @@ public class Commands {
             studentList.forEach((key,value) -> {
                 System.out.println(key + " = " + value.getName() + " ");
             });
-            studentID = scanner.next();
-            LookupStudent(studentID);
+            try{
+                studentID = scanner.next();
+                LookupStudent(studentID);
+            }catch(IllegalArgumentException iae){
+                System.err.println("The option introduced is not correct");
+            }
             break;
         case SHOW_TEACHERS:
             ShowTeachers();
@@ -118,8 +128,12 @@ public class Commands {
             teacherList.forEach((key,value) -> {
                 System.out.println(key + " = " + value.getName() + " ");
             });
-            teacherID = scanner.next();
-            LookupTeacher(teacherID);
+            try{
+                teacherID = scanner.next();
+                LookupTeacher(teacherID);
+            }catch(IllegalArgumentException iae){
+                System.err.println("The option introduced is not correct");
+            }
             break;
         case SHOW_PROFIT:
             ShowProfit();
