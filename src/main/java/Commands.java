@@ -40,8 +40,6 @@ public class Commands {
         this.teacherList = teacherList;
     }
 
-
-    // TODO mover el metodo a otra clase
     public void selector(){
         System.out.println("Choose a command:\n");
         System.out.println("1. Enroll:\n");
