@@ -139,31 +139,55 @@ public class Commands {
     }
 
     public void ShowCourses(){    //This command will display a list of all courses
-
+        System.out.println("List of Courses: ");
+        for (Map.Entry<String, Course> entry : courseList.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue().getName());
+        }
     }
 
     public void LookupCourse(String courseID){ // This command will display the full details of the specified course
-
+        if(courseList.containsKey(courseID)) {
+            System.out.println("Course ID: " + courseID);
+            System.out.println("Course Name: " + courseList.get(courseID).getName());
+            System.out.println("Course Price: " + courseList.get(courseID).getPrice());
+            System.out.println("Course Money Earned: " + courseList.get(courseID).getMoney_earned());
+            System.out.println("Course Teacher: " + courseList.get(courseID).getTeacher().getName());
+        }
     }
 
     public void ShowStudents(){ //This command will display a list of all students
-
+        System.out.println("List of Students: ");
+        for (Map.Entry<String, Student> entry : studentList.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue().getName());
+        }
     }
 
     public void LookupStudent(String studentID){ //This command will display the full details of the specified student
-
+        if(studentList.containsKey(studentID)){
+            System.out.println("Student ID: " + studentID);
+            System.out.println("Student Name: " + studentList.get(studentID).getName());
+            System.out.println("Student Address: " + studentList.get(studentID).getAddress());
+            System.out.println("Student Email: " + studentList.get(studentID).getEmail());
+            System.out.println("Student Course: " + studentList.get(studentID).getCourse().getName());
+        }
     }
 
     public void ShowTeachers(){ //This command will display a list of all teachers
-
+        System.out.println("List of Teachers: ");
+        for (Map.Entry<String, Teacher> entry : teacherList.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue().getName());
+        }
     }
 
     public void LookupTeacher(String teacherID){ // This command will display the full details of the specified teacher
-
+        if(teacherList.containsKey(teacherID)){
+            System.out.println("Teacher ID: " + teacherID);
+            System.out.println("Teacher Name: " + teacherList.get(teacherID).getName());
+            System.out.println("Teacher Salary: " + teacherList.get(teacherID).getSalary());
+        }
     }
 
     public void ShowProfit(){ //This command will calculate (The total money earned from all courses) - (The sum of all the teachers' salaries) and return the result
-
     }
 }
 
