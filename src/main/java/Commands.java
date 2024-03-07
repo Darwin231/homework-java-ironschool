@@ -18,18 +18,47 @@ public class Commands {
         setTeacherList(teacherList);
     }
 
-    public void commandSelector(CommandEnum commandAction){
-        String studentID = "asdfasdf";
-        String courseID = "asdfasdf";
-        String teacherID = "asdfasdf";
+    public CommandEnum findCommandEnum(String commandStr) {
+        if (commandStr.startsWith("ENROLL"))
+            return CommandEnum.ENROLL;
+        if (commandStr.startsWith("ASSIGN"))
+            return CommandEnum.ASSIGN;
+        if (commandStr.startsWith("SHOW COURSES"))
+            return CommandEnum.SHOW_COURSES;
+        if (commandStr.startsWith("LOOKUP COURSE"))
+            return CommandEnum.LOOKUP_COURSE;
+        if (commandStr.startsWith("SHOW STUDENTS"))
+            return CommandEnum.SHOW_STUDENTS;
+        if (commandStr.startsWith("LOOKUP STUDENT"))
+            return CommandEnum.LOOKUP_STUDENT;
+        if (commandStr.startsWith("SHOW TEACHERS"))
+            return CommandEnum.SHOW_TEACHERS;
+        if (commandStr.startsWith("LOOKUP TEACHER"))
+            return CommandEnum.LOOKUP_TEACHER;
+        if (commandStr.startsWith("SHOW PROFIT"))
+            return CommandEnum.SHOW_PROFIT;
+        throw new RuntimeException("Command Not Valid");
+    }
 
+    public String[] findIDs(String commandStr, CommandEnum commandEnum) {
+        String[] ids = new String[2];
+        String[] words = commandStr.split(" ");
+        if (words.length != commandEnum.getSize())
+            throw new RuntimeException("Invalid, missing or extra IDs");
+        for (int i = 0; i < commandEnum.getNbArgs(); i++)
+            ids[i] = words[commandEnum.getNbComms() + i];
+
+        return ids;
+    }
+
+    public void commandSelector(CommandEnum commandAction, String firstID, String secondID){
         switch (commandAction){
         case ENROLL:
-            enroll(studentID, courseID);
-
+            enroll(firstID, secondID);
             break;
+
         case ASSIGN:
-            assign(teacherID, courseID);
+            assign(firstID, secondID);
             break;
 
         case SHOW_COURSES:
@@ -37,7 +66,7 @@ public class Commands {
             break;
 
         case LOOKUP_COURSE:
-            LookupCourse(courseID);
+            LookupCourse(firstID);
             break;
 
         case SHOW_STUDENTS:
@@ -45,7 +74,7 @@ public class Commands {
             break;
 
         case LOOKUP_STUDENT:
-            LookupStudent(studentID);
+            LookupStudent(firstID);
             break;
 
         case SHOW_TEACHERS:
@@ -53,7 +82,7 @@ public class Commands {
             break;
 
         case LOOKUP_TEACHER:
-            LookupTeacher(teacherID);
+            LookupTeacher(firstID);
             break;
 
         case SHOW_PROFIT:

@@ -1,9 +1,7 @@
 import lombok.Data;
-import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Scanner;
 
 @Data
@@ -25,7 +23,13 @@ public class Application {
         Commands commands = new Commands(this.getCourseList(), this.getStudentList(), this.getTeacherList());
         while (true) {
             String commandStr = scanner.nextLine();
-            commands.commandSelector(CommandEnum.SHOW_COURSES);
+            try {
+                CommandEnum commandEnum = commands.findCommandEnum(commandStr);
+                String[] ids = commands.findIDs(commandStr, commandEnum);
+                commands.commandSelector(commandEnum, ids[0], ids[1]);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
